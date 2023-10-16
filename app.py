@@ -8,10 +8,12 @@ app = Flask(__name__)
 with open('iris_classifier.pkl', 'rb') as model_file:
     model = pickle.load(model_file)
 
+
 # Define a route to render the HTML form
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 # Define a route to handle form submission and make predictions
 @app.route('/predict', methods=['POST'])
@@ -22,9 +24,6 @@ def predict():
         sepal_width = float(request.form['sepal_width'])
         petal_length = float(request.form['petal_length'])
         petal_width = float(request.form['petal_width'])
-
-        print(f"Input Values: sepal_length={sepal_length}, sepal_width={sepal_width}, petal_length={petal_length}, petal_width={petal_width}")
-        # Make a prediction using the loaded model
 
 
         features = [[sepal_length, sepal_width, petal_length, petal_width]]
@@ -39,5 +38,6 @@ def predict():
         print(f"Exception: {e}")
         return render_template('index.html', error_message=str(e))
 
+
 if __name__ == '__main__':
-    app.run(debug=True,host='0.0.0.0',port=8080)
+    app.run(debug=True, host='0.0.0.0', port=8080)

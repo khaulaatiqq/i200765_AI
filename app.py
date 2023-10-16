@@ -25,7 +25,6 @@ def predict():
         petal_length = float(request.form['petal_length'])
         petal_width = float(request.form['petal_width'])
 
-
         features = [[sepal_length, sepal_width, petal_length, petal_width]]
         scaler = StandardScaler()
         features = scaler.fit_transform(features)
